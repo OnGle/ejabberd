@@ -6,14 +6,19 @@ PATCHES=$SRC/speeqe-patches
 WEBROOT=/var/www/django/speeqeweb
 SCRIPTS=$WEBROOT/webroot/scripts
 
+# install Django (speeqe dep)
+pip install Django==1.4.5
+
 # install punjab (speeqe dep)
 cd $SRC/punjab
 python setup.py install
 
 # configure and patch speeqeweb
 mkdir -p $(dirname $WEBROOT)
-mv $SRC/speeqe/speeqeweb $WEBROOT
+mv -f $SRC/speeqe/speeqeweb/* $WEBROOT
 chown -R root:root $WEBROOT
+
+echo $(ls $WEBROOT)
 
 mkdir -p /etc/speeqe
 mv $PATCHES/settings.py /etc/speeqe/settings.py
@@ -40,7 +45,7 @@ mkdir -p /var/log/speeqe
 chown www-data:www-data /var/log/speeqe
 
 ## ejabberd
-XMPP_DOMAIN=example.com
+XMPP_DOMAIN=localhost # example.com
 ADMIN_PASS=turnkey
 
 echo "ERLANG_NODE=ejabberd@localhost" >> /etc/default/ejabberd

@@ -34,9 +34,9 @@ stop_ejabberd
 rm -f /var/lib/ejabberd/*
 
 # set ejabberd required permissions
-chown -R root:ejabberd /etc/ejabberd
-chmod 750 /etc/ejabberd
-chmod 640 /etc/ejabberd/*
+#chown -R root:ejabberd /etc/ejabberd
+#chmod 750 /etc/ejabberd
+#chmod 640 /etc/ejabberd/*
 
 # update ejabberd and speeqe configuration
 sed -i "s/$RE_XMPP_DOMAIN/$XMPP_DOMAIN/" /etc/ejabberd/ejabberd.cfg
